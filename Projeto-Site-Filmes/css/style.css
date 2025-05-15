@@ -1,0 +1,26 @@
+:root {
+    --color1: #181549;
+    --color2: #1c1c1c;
+    --color3: #393939;
+    --color4: #555555;
+    --color5: #717171;
+    --color6: #ffffff;
+    --font_size1: 25px;
+    --font1: 'Recursive';
+    --font2: 'Lato';
+    --font3: 'Roboto';
+}
+.card-img-top {
+    height: 350px;
+    object-position: bottom;
+    object-fit: cover;
+}
+
+.navbar {
+    background-color: var(--color2);
+}
+.navbar a {
+    color: white !important;
+
+}
+
