@@ -15,22 +15,82 @@ $filmes = [
         "nome" => "Thunderbolts*",
         "ano" => 2025,
         "genero" => "Ação",
+        "duracao" => "2h30m",
         "id" => "thunderbolts",
-    ],
-    [
-        "nome" => "My Little Poney: O Filme",
-        "ano" => 2017,
-        "genero" => "Fantasia",
-        "id" => "mlpfilme",
     ],
     [
         "nome" => "A Fuga das galinhas",
         "ano" => 2017,
         "genero" => "Animação",
+        "duracao" => "2h30m",
         "id" => "A_Fuga_das_Galinhas",
+    ],
+    [
+        "nome" => "Ainda Estou Aqui",
+        "ano" => 2024,
+        "genero" => "Drama",
+        "duracao" => "2h30m",
+        "id" => "ainda_estou_aqui",
+    ],
+    [
+        "nome" => "My Little Poney: O Filme",
+        "ano" => 2017,
+        "genero" => "Fantasia",
+        "duracao" => "2h30m",
+        "id" => "mlpfilme",
+    ],
+    [
+        "nome" => "Cidade de Deus",
+        "ano" => 2002,
+        "genero" => "Crime/Drama",
+        "duracao" => "2h10m",
+        "id" => "CidadedeDeus",
+    ],
+      [
+        "nome" => "Conclave",
+        "ano" => 2024,
+        "genero" => "Thriller/Mistério",
+        "duracao" => "2h1",
+        "id" => "Conclave",
+    ],
+       [
+        "nome" => "Coraline e o Mundo Secreto",
+        "ano" => 2009,
+        "genero" => "Infatil/Terror",
+        "duracao" => "1h40",
+        "id" => "coraline",
+    ],
+    [
+        "nome" => "Deu a Louca na Chapeuzinho",
+        "ano" => 2005,
+        "genero" => "Infatil/Comédia",
+        "duracao" => "1h40",
+        "id" => "coraline",
+    ],
+
+];
+
+$series = [
+    [
+        "nome" => "Loki",
+        "ano de inicio" => 2023,
+        "ano de encerramento"  => 2025,
+        "genero" => "Ação",
+        "numero de temporadas" => 2,
+        "id" => "loki",
+    ],
+    [
+        "nome" => "Anne with an E",
+        "ano de inicio" => 2017,
+        "ano de encerramento"  => 2019,
+        "genero" => "Drame",
+        "numero de temporadas" => 3,
+        "id" => "anne",
     ],
 ];
 
+$destaques = ["thunderbolts", "mlpfilme"];
+$filmesOscar = [];
 
 ?>
 
@@ -79,13 +139,48 @@ $filmes = [
         </nav>
     </header>
     <main>
+        <h1>Filmes recomendados</h1>
         <div class="row m-auto text-center container">
+            <div id="carouselFilmes" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <?php
+                    $primeiro = true;
+                    foreach ($filmes as $filme) {
+                        if (in_array($filme["id"], $destaques)) {
+                    ?>
+                            <div class="carousel-item <?= $primeiro ? 'active' : '' ?>">
+                                <a href="#thunderbolts">
+                                    <img src="img/<?= htmlspecialchars($filme["id"]) ?>_horizontal.jpg" class="d-block w-100" alt="Filme <?= htmlspecialchars($filme["id"]) ?>">
 
+                                </a>
+                            </div>
+                    <?php
+                            $primeiro = false;
+                        }
+                    }
+                    ?>
+                </div>
+
+                <!-- Controles do carrossel -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselFilmes" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselFilmes" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+
+
+        </div>
+        <h1>Todos Os Filmes</h1>
+        <div class="row m-auto text-center container">
             <?php
 
             for ($i = 0; $i < count($filmes); $i++) {
             ?>
-                <div class="col-4">
+                <div class="col-4" id="<?= $filmes[$i]["id"] ?>">
                     <div class="card m-3">
                         <img src="img/<?= $filmes[$i]["id"] ?>.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
