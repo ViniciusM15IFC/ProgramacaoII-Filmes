@@ -187,7 +187,7 @@ $filmesOscar = [];
         <div class="position-relative">
             <!-- Botão Esquerda -->
             <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
-                onclick="scrollCarousel(-1)" style="opacity: 0.7;">
+                onclick="scrollCarousel(-1, 'carousel-filmes')" style="opacity: 0.7;">
                 &#8249;
             </button>
 
@@ -195,12 +195,11 @@ $filmesOscar = [];
             <div id="carousel-filmes" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
                 <?php foreach ($filmes as $filme): ?>
                     <div class="flex-shrink-0" style="width: calc(100% / 3 - 1rem);">
-                        <div class="card bg-dark text-white border-0" id="<?= htmlspecialchars($filme["genero"]) ?>"
-                            style="position: relative;">
-                            <img src="img/<?= htmlspecialchars($filme["id"]) ?>.jpg" class="card-img-top" alt="...">
+                        <div class="card bg-dark text-white border-0" id="<?= $filme["id"] ?>" style="position: relative;">
+                            <img src="img/<?= $filme["id"] ?>.jpg" class="card-img-top" alt="...">
                             <div class="card-img-overlay d-flex flex-column justify-content-end p-2"
                                 style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
-                                <h5 class="card-title mb-1"><?= htmlspecialchars($filme["nome"]) ?></h5>
+                                <h5 class="card-title mb-1"><?= $filme["nome"] ?></h5>
                             </div>
                         </div>
                     </div>
@@ -208,10 +207,39 @@ $filmesOscar = [];
             </div>
             <!-- Botão Direita -->
             <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3"
-                onclick="scrollCarousel(1)" style="opacity: 0.7;">
+                onclick="scrollCarousel(1, 'carousel-filmes')" style="opacity: 0.7;">
                 &#8250;
             </button>
         </div>
+        <h1>Todos as Séries</h1>
+        <div class="position-relative">
+            <!-- Botão Esquerda -->
+            <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
+                onclick="scrollCarousel(-1, 'carousel-series')" style="opacity: 0.7;">
+                &#8249;
+            </button>
+
+            <!-- Área do carrossel -->
+            <div id="carousel-series" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
+                <?php foreach ($series as $serie): ?>
+                    <div class="flex-shrink-0" style="width: calc(100% / 3 - 1rem);">
+                        <div class="card bg-dark text-white border-0" id="<?= $serie["id"] ?>" style="position: relative;">
+                            <img src="img/<?= $serie["id"] ?>.jpg" class="card-img-top" alt="...">
+                            <div class="card-img-overlay d-flex flex-column justify-content-end p-2"
+                                style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                                <h5 class="card-title mb-1"><?= $serie["nome"] ?></h5>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <!-- Botão Direita -->
+            <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3"
+                onclick="scrollCarousel(1, 'carousel-series')" style="opacity: 0.7;">
+                &#8250;
+            </button>
+        </div>
+
 
 
 </body>
