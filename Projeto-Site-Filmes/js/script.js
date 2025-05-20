@@ -1,5 +1,5 @@
-function scrollCarousel(direction) {
-  const carousel = document.getElementById('carousel-filmes');
+function scrollCarousel(direction, id) {
+  const carousel = document.getElementById(id);
   const card = carousel.querySelector('.flex-shrink-0');
   if (!card) return;
 
