@@ -369,7 +369,7 @@ $series = [
         "produtora" => "Amazon Studios, BBC Studios",
         "classificacao" => 16,
         "genero" => "Fantasia",
-        "genero2" => "Comédia",
+        "genero2" => "Drama",
         "numero_de_temporadas" => 2,
         "id" => "good-omens"
     ],
@@ -463,10 +463,49 @@ $series = [
         "genero2" => "Mistério",
         "numero_de_temporadas" => 3,
         "id" => "dark"
+    ],
+    [
+        "id" => "the-office",
+        "nome" => "The Office",
+        "genero" => "Comédia",
+        "genero2" => "Mockumentary",
+        "ano_de_inicio" => 2005,
+        "ano_de_encerramento" => 2013,
+        "numero_de_temporadas" => 9,
+        "classificacao" => "14",
+        "produtora" => "NBC",
+        "direção" => "Greg Daniels",
+        "elencoPrincipal" => "Steve Carell, Rainn Wilson, John Krasinski, Jenna Fischer"
+    ],
+    [
+        "id" => "brooklyn99",
+        "nome" => "Brooklyn Nine-Nine",
+        "genero" => "Comédia",
+        "genero2" => "Policial",
+        "ano_de_inicio" => 2013,
+        "ano_de_encerramento" => 2021,
+        "numero_de_temporadas" => 8,
+        "classificacao" => "12",
+        "produtora" => "NBC / Fox",
+        "direção" => "Dan Goor, Michael Schur",
+        "elencoPrincipal" => "Andy Samberg, Terry Crews, Andre Braugher, Melissa Fumero"
+    ],
+    [
+        "id" => "rick-and-morty",
+        "nome" => "Rick and Morty",
+        "genero" => "Animação",
+        "genero2" => "Ficção Científica",
+        "ano_de_inicio" => 2013,
+        "ano_de_encerramento" => null, // Ainda em andamento
+        "numero_de_temporadas" => 7,
+        "classificacao" => "16",
+        "produtora" => "Adult Swim",
+        "direção" => "Dan Harmon, Justin Roiland",
+        "elencoPrincipal" => "Justin Roiland, Chris Parnell, Spencer Grammer, Sarah Chalke"
     ]
 ];
 
-$destaques = ["thunderbolts", "my-little-pony-o-filme", "loki"];
+$destaques = ["thunderbolts", "my-little-pony-o-filme", "ainda-estou-aqui"];
 $ganhadoresOscar = ["ainda-estou-aqui", "brutalista", "conclave", "flow", "duna-parte-2", "a-substancia"];
 $generos = [
     "Ação",

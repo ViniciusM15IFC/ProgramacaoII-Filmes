@@ -23,32 +23,36 @@ include 'componentes.php';
 <body class="container mt-5 w-75 m-auto">
     <?php include 'header.php' ?>
     <main>
-        <div class="row m-auto text-center container">
-            <div id="carouselFilmes" class="carousel slide m-auto" data-bs-ride="carousel">
+        <div class="row m-auto container">
+            <div id="carousel-destaques" class="carousel slide m-auto" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php
                     $primeiro = true;
-                    for ($i = 0; $i < count($destaques); $i++) {
-                        ?>
-                        <div class="carousel-item <?= $primeiro ? 'active' : '' ?>">
-                            <a href="#<?= $destaques[$i] ?>">
-                                <img src="img/<?= $destaques[$i] ?>_horizontal.jpg" class="d-block w-100" alt="...">
-                            </a>
+                    for ($i = 0; $i < count($filmes); $i++) {
+                        for ($i = 0; $i < count($filmes); $i++) {
+                            if (in_array($filmes[$i]["id"], $destaques)) {
+                                ?>
+                                <div class="carousel-item <?= $primeiro ? 'active' : '' ?>" data-bs-toggle="modal"
+                                    data-bs-target="#modal<?= $filmes[$i]["id"] ?>">
+                                    <img src="img/<?= $filmes[$i]["id"] ?>_horizontal.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <?php
+                                modal("filmes", $i);
+                            }
+                        }
 
-                        </div>
-                        <?php
                         $primeiro = false;
                     }
                     ?>
                 </div>
 
                 <!-- Controles do carrossel -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselFilmes"
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-destaques"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Anterior</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselFilmes"
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel-destaques"
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Próximo</span>

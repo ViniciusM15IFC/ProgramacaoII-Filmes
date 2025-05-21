@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#">Caribéflix</a>
+            <a class="navbar-brand fw-bold" href="#">CaribéFlix</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
                 aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.php">Início</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="filmes.php">Filmes</a>

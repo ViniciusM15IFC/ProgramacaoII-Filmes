@@ -31,10 +31,11 @@ include 'componentes.php';
                 &#8249;
             </button>
 
-            <div id="carousel-<?= $generos[$j] ?>" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
+            <div id="carousel-<?= $generos[$j] ?>" class="d-flex overflow-hidden gap-3 px-2"
+                style="scroll-behavior: smooth;">
                 <?php
                 for ($i = 0; $i < count($series); $i++) {
-                    if ($series[$i]["genero"] == $generos[$j] || $series[$i]["genero2"] == $generos[$j]){
+                    if ($series[$i]["genero"] == $generos[$j] || $series[$i]["genero2"] == $generos[$j]) {
                         card($series, $i);
                         modal("series", $i);
                     }
@@ -47,9 +48,33 @@ include 'componentes.php';
                 &#8250;
             </button>
         </div>
+
+
         <?php
     }
     ?>
+    <h3>Todos as Séries</h3>
+    <div class="position-relative" id="todos">
+        <!-- Botão Esquerda -->
+        <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
+            onclick="scrollCarousel(-1, 'carousel-todos')" style="opacity: 0.7;">
+            &#8249;
+        </button>
+
+        <div id="carousel-todos" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
+            <?php
+            for ($i = 0; $i < count($series); $i++) {
+                card($series, $i);
+                modal("series", $i);
+            }
+            ?>
+        </div>
+        <!-- Botão Direita -->
+        <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3"
+            onclick="scrollCarousel(1, 'carousel-todos')" style="opacity: 0.7;">
+            &#8250;
+        </button>
+    </div>
 </body>
 
 </html>

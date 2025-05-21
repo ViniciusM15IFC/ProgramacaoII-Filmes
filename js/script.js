@@ -12,29 +12,32 @@ function scrollCarousel(direction, id) {
     behavior: 'smooth'
   });
 }
-
 function buscar(event) {
-    event.preventDefault(); // Impede o envio do formulário
+    event.preventDefault(); // Impede envio padrão do formulário
 
-    const termo = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.card');
+    const termo = document.getElementById("searchInput").value.toLowerCase();
 
-    for (let card of cards) {
-        const titulo = card.querySelector('.card-title')?.textContent.toLowerCase();
-        const genero = card.getAttribute('data-genero')?.toLowerCase();
-        const genero2 = card.getAttribute('data-genero2')?.toLowerCase();
+    if (!termo) return;
 
-        if (
-            (titulo && titulo.includes(termo)) ||
-            (genero && genero.includes(termo)) ||
-            (genero2 && genero2.includes(termo))
-        ) {
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            card.classList.add('border', 'border-warning');
-            setTimeout(() => card.classList.remove('border', 'border-warning'), 2000);
+    // Seleciona todos os cards (ajuste a classe se necessário)
+    const elementos = document.querySelectorAll('.card');
+
+    for (let el of elementos) {
+        const titulo = el.querySelector('.card-title')?.innerText.toLowerCase() || "";
+        const genero = el.dataset.genero?.toLowerCase() || "";
+
+        if (titulo.includes(termo) || genero.includes(termo)) {
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+            el.classList.add("border", "border-success", "border-3");
+
+            setTimeout(() => {
+                el.classList.remove("border", "border-success", "border-3");
+            }, 2000);
+
             return;
         }
     }
 
     alert("Nenhum resultado encontrado.");
 }
+

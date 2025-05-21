@@ -12,16 +12,12 @@
 }
 .card {
     margin: 10px;
+    background-color: var(--color3); 
+    border-radius: 5px;
 }
 
-.card-body {
-    background-color: var(--color2);
-    border-color: var(--color2);
-    border: var(--color2) ; 
-    border: 5px 0;
-}
 .card-body h5, .card-body h6 {
-    background-color: var(--color2);
+    background-color: var(--color3);
     border-color: var(--color2);
     color: var(--color6); 
 }
@@ -29,6 +25,7 @@
     height: 400px;
     object-position: center;
     object-fit: cover;
+    border-radius: 7px;
 }
 .card-img-overlay {
     background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
@@ -59,6 +56,8 @@ h3 {
     height: 500px;
     object-position: center;
     object-fit: cover;
+    margin: 0;
+    padding: 0;
 }
 
 .carousel {
@@ -72,4 +71,8 @@ h3 {
 .btn {
     background-color: var(--color4);
     color: var(--color5)
+}
+
+#carousel-destaques {
+    margin-top: 50px;
 }
