@@ -1,9 +1,9 @@
 :root {
-    --color1: blue;
-    --color2: #1c1c1c;
-    --color3: #393939;
-    --color4: #555555;
-    --color5: #717171;
+    --color1: #0a0040;
+    --color2: #000329;
+    --color3: #060018;
+    --color4: #09ffff;
+    --color5: #002c2c;
     --color6: #ffffff;
     --font_size1: 25px;
     --font1: 'Recursive';
@@ -12,7 +12,6 @@
 }
 .card {
     margin: 10px;
-    border-color: var(--color2);
 }
 
 .card-body {
@@ -68,4 +67,9 @@ h3 {
 
 .modal-body img {
     height: 450px;
+}
+
+.btn {
+    background-color: var(--color4);
+    color: var(--color5)
 }
