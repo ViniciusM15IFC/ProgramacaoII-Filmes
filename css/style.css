@@ -43,11 +43,14 @@
     background-color: var(--color2);
 }
 
-header nav, .offcanvas {
+header nav, .offcanvas, footer {
     background-color: var(--color1);
-    color: var(--color6)
+    color: var(--color6);
 }
-
+footer {
+    color: var(--color6);
+    width: 100%;
+}
 
 body {
     background-color: var(--color3);

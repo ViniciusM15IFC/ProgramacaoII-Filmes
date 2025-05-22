@@ -20,9 +20,9 @@ include 'componentes.php';
 
 ?>
 
-<body class="container mt-5 w-75 m-auto">
+<body >
     <?php include 'header.php' ?>
-    <main>
+    <main class="container mt-5 w-75 m-auto">
         <div class="row m-auto container">
             <div id="carousel-destaques" class="carousel slide m-auto" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -110,7 +110,8 @@ include 'componentes.php';
                 &#8250;
             </button>
         </div>
-        <?php include 'footer.php' ?>
+    </main>
 </body>
+<?php include 'footer.php' ?>
 
 </html>
