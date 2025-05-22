@@ -75,6 +75,7 @@ include 'componentes.php';
             &#8250;
         </button>
     </div>
+ <?php include 'footer.php' ?>
 </body>
 
 </html>

@@ -11,6 +11,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/logo-preto.png" type="image/x-icon">
     <title>Caribéflix Filmes</title>
 </head>
 <?php
@@ -72,7 +73,7 @@ include 'componentes.php';
                 &#8250;
             </button>
         </div>
-
+<?php include 'footer.php' ?>
 </body>
 
 </html>

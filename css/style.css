@@ -1,14 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300&display=swap');
+
 :root {
-    --color1: #0a0040;
+    --color1: #0f0f0f;
     --color2: #000329;
-    --color3: #060018;
-    --color4: #09ffff;
-    --color5: #002c2c;
+    --color3: #161616;
+    --color4: #b13243;
+    --color5: #722630;
     --color6: #ffffff;
-    --font_size1: 25px;
     --font1: 'Recursive';
     --font2: 'Lato';
     --font3: 'Roboto';
+}
+.titulo {
+    font-family: var(--font1);
+    color: var(--color4);
 }
 .card {
     margin: 10px;
@@ -19,7 +26,8 @@
 .card-body h5, .card-body h6 {
     background-color: var(--color3);
     border-color: var(--color2);
-    color: var(--color6); 
+    color: var(--color6);
+    font-family: var(--font3);
 }
 .card-img-top {
     height: 400px;
@@ -39,18 +47,20 @@ header nav, .offcanvas {
     background-color: var(--color1);
     color: var(--color6)
 }
-.navbar a {
-    color: white !important;
-}
 
 
 body {
     background-color: var(--color3);
 }
 
+.container {
+    padding-top: 30px;
+}
+
 h3 {
     color: var(--color6);
     padding-top: 20px;
+    font-family: 'Lato';
 }
 .carousel img {
     height: 500px;
@@ -70,9 +80,20 @@ h3 {
 
 .btn {
     background-color: var(--color4);
-    color: var(--color5)
+    color: var(--color1)
 }
 
+.btn:hover {
+    background-color: var(--color5);
+}
+
+.btn:active {
+    background-color: var(--color5);
+}
 #carousel-destaques {
     margin-top: 50px;
+}
+
+.img-navbar {
+    height: 70px;
 }

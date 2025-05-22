@@ -1,7 +1,8 @@
 <header>
     <nav class="navbar navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#">CaribéFlix</a>
+            <a class="navbar-brand fw-bold titulo" href="index.html">CaribéFlix</a>
+            <img class="img-navbar" src="img/logo.png" alt="logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
                 aria-label="Toggle navigation">

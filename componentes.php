@@ -80,7 +80,7 @@ function card($array, $i)
     ?>
     <div class="flex-shrink-0" style="width: calc(100% / 3 - 1rem);">
         <div class="card bg-dark text-white border-0" id="<?= strtolower(str_replace(' ', '-', $array[$i]['nome'])) ?>"
-            data-genero="<?= $array[$i]['genero'] . ' ' . $array[$i]['genero2'] ?>"
+            data-genero="<?= strtolower($array[$i]['genero'] . ' ' . $array[$i]['genero2']) ?>"
             style="position: relative; cursor: pointer;" data-bs-toggle="modal"
             data-bs-target="#modal<?= $array[$i]["id"] ?>">
             <img src="img/<?= $array[$i]["id"] ?>.jpg" class="card-img-top" alt="...">
