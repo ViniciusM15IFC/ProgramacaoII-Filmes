@@ -21,10 +21,13 @@
                             <a class="nav-link active" aria-current="page" href="index.php">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="filmes.php">Filmes</a>
+                            <a class="nav-link" href="filmes.php">Ver Filmes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="series.php">Séries</a>
+                            <a class="nav-link" href="series.php">Ver Séries</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="form.php">Cadastrar</a>
                         </li>
                     </ul>
                     <form class="d-flex mt-3" role="search" onsubmit="buscar(event)">
