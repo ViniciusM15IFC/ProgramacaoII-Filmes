@@ -22,14 +22,15 @@
             <select class="form-select" id="curso" name="curso" required>
                 <option selected>Selecione</option>
                 <?php
-                require_once "src/CursoDAO.php";
-                $cursos = CursoDAO::consultar();
+                require_once "src/CategoriaDAO.php";
+                $categorias = CategoriaDAO::consultar();
 
-                for ($i = 0; $i < count($cursos); $i++) {
+                foreach ($categorias as $categoria) {
                     ?>
-                    <option value="<?= $cursos[$i]['id_curso'] ?>"><?= $cursos[$i]['nome_curso'] ?></option>
+                    <option value="<?= $categoria['id_categoria'] ?>"><?= $categoria['nome'] ?></option>
                     <?php
                 }
+
                 ?>
             </select>
         </div>
