@@ -10,7 +10,6 @@
 </head>
 
 <body class="w-75 m-auto">
-    <?php include 'header.php' ?>
     <form action="cadastro.php">
         <h3 class="m-5 text-primary">Formulário das Comidas</h3>
         <div class="mb-3">

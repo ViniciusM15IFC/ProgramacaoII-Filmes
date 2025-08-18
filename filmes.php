@@ -15,42 +15,17 @@
     <title>Caribéflix Filmes</title>
 </head>
 <?php
-include 'matriz.php';
-include 'componentes.php';
+require_once 'src/FilmesDAO.php';
+require_once 'src/CategoriaDAO.php';
+$generos = CategoriaDAO::consultar();
+$filmes = FilmeDAO::consultar();
+require 'componentes.php';
 
 ?>
 
 <body class="container mt-5 w-75 m-auto">
-    <?php include 'header.php';
-    for ($j = 0; $j < count($generos); $j++) {
-        ?>
-        <h3><?= $generos[$j] ?></h3>
-        <div class="position-relative" id="<?= $generos[$j] ?>">
-            <!-- Botão Esquerda -->
-            <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
-                onclick="scrollCarousel(-1, 'carousel-<?= $generos[$j] ?>')" style="opacity: 0.7;">
-                &#8249;
-            </button>
-
-            <div id="carousel-<?= $generos[$j] ?>" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
-                <?php
-                for ($i = 0; $i < count($filmes); $i++) {
-                    if ($filmes[$i]["genero"] == $generos[$j] || $filmes[$i]["genero2"] == $generos[$j]) {
-                        card($filmes, $i);
-                        modal("filmes", $i);
-                    }
-                }
-                ?>
-            </div>
-            <!-- Botão Direita -->
-            <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3"
-                onclick="scrollCarousel(1, 'carousel-<?= $generos[$j] ?>')" style="opacity: 0.7;">
-                &#8250;
-            </button>
-        </div>
-        <?php
-    }
-    ?>
+    <?php include 'header.php'; ?>
+    
     <h3>Todos os Filmes</h3>
         <div class="position-relative" id="todos">
             <!-- Botão Esquerda -->
@@ -61,10 +36,10 @@ include 'componentes.php';
 
             <div id="carousel-todos" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
                 <?php
-                for ($i = 0; $i < count($filmes); $i++) {
-                        card($filmes, $i);
-                        modal("filmes", $i);
-                }
+                foreach ($filmes as $filme) {
+                        card($filme, "filme");
+                        modal($filme, "filme");
+                    }
                 ?>
             </div>
             <!-- Botão Direita -->

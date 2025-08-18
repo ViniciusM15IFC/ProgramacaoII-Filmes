@@ -1,6 +1,7 @@
 <?php
 require_once "ConexaoBD.php";
-require "src/Util.php";
+require_once __DIR__ . "/Util.php";
+
 
 class CategoriaDAO
 {

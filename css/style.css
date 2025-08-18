@@ -100,3 +100,7 @@ h3 {
 .img-navbar {
     height: 70px;
 }
+
+label {
+    color : var(--color6);
+}
