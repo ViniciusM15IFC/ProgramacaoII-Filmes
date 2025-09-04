@@ -27,7 +27,10 @@
                             <a class="nav-link" href="series.php">Ver Séries</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="form.php">Cadastrar</a>
+                            <a class="nav-link" href="form-filme.php">Cadastrar Filme</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="form-serie.php">Cadastrar Série</a>
                         </li>
                     </ul>
                     <form class="d-flex mt-3" role="search" onsubmit="buscar(event)">

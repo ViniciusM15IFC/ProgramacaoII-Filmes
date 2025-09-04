@@ -11,6 +11,7 @@
 </head>
 
 <body class="w-75 m-auto">
+    <?php include 'header.php'; ?>
     <form action="actions/cadastro-serie.php" method="post" enctype="multipart/form-data">
         <h3 class="m-5">Formulário das Séries</h3>
         <div class="mb-3">
@@ -27,7 +28,7 @@
 
                 foreach ($categorias as $categoria) {
                     ?>
-                    <option value="<?= $categoria['id_categoria'] ?>"><?= $categoria['nome'] ?></option>
+                    <option value="<?= $categoria['id_categoria'] ?>"><?= $categoria['nome_categoria'] ?></option>
                     <?php
                 }
 
@@ -76,7 +77,7 @@
                     $classificacoes = ClassificacaoDAO::consultar();
                     foreach($classificacoes as $classificacao) {
                 ?>
-                   <option value="<?= $classificacao['id_classificacao'] ?>"><?= $classificacao['nome'] ?></option> 
+                   <option value="<?= $classificacao['id_classificacao'] ?>"><?= $classificacao['nome_classificacao'] ?></option> 
                 <?php
                     }
                 ?>

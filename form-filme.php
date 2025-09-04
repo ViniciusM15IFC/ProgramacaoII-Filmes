@@ -11,6 +11,7 @@
 </head>
 
 <body class="w-75 m-auto">
+    <?php include 'header.php'; ?>
     <form action="actions/cadastro-filme.php" method="post" enctype="multipart/form-data">
         <h3 class="m-5">Formulário dos Filmes</h3>
         <div class="mb-3">

@@ -49,5 +49,55 @@ class FilmeDAO
         return $resultado->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function consultarPorCategoria($id_categoria = null)
+    {
+        $sql = "SELECT f.*, c.nome_categoria, cl.nome_classificacao
+            FROM filme f
+            INNER JOIN categoria c ON f.id_categoria = c.id_categoria
+            INNER JOIN classificacao cl ON f.id_classificacao = cl.id_classificacao";
+
+        // Se um ID de categoria foi fornecido, adiciona o WHERE
+        if ($id_categoria !== null) {
+            $sql .= " WHERE f.id_categoria = :id_categoria";
+        }
+
+        $conexao = ConexaoBD::conectar();
+        $stmt = $conexao->prepare($sql);
+
+        if ($id_categoria !== null) {
+            $stmt->bindParam(':id_categoria', $id_categoria, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function consultarPorAno($operador = '=', $ano = null): array
+    {
+        $conexao = ConexaoBD::conectar();
+
+        $sql = "SELECT f.*, c.nome_categoria, cl.nome_classificacao
+            FROM filme f
+            INNER JOIN categoria c ON f.id_categoria = c.id_categoria
+            INNER JOIN classificacao cl ON f.id_classificacao = cl.id_classificacao";
+
+        if ($ano !== null) {
+            // Valida operadores válidos para prevenir SQL injection
+            $operadoresValidos = ['=', '!=', '<', '>', '<=', '>=', '<>'];
+            $operador = in_array($operador, $operadoresValidos) ? $operador : '=';
+
+            $sql .= " WHERE f.ano $operador :ano";
+        }
+
+        $stmt = $conexao->prepare($sql);
+
+        if ($ano !== null) {
+            $stmt->bindValue(':ano', $ano);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+    }
+
 
 }

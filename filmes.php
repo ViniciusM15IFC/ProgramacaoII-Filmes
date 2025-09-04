@@ -23,11 +23,11 @@ require 'componentes.php';
 
 ?>
 
-<body class="container mt-5 w-75 m-auto">
+<body>
     <?php include 'header.php'; ?>
-    
-    <h3>Todos os Filmes</h3>
-        <div class="position-relative" id="todos">
+    <div class="container mt-5 w-75 m-auto">
+        <h3>Todos os Filmes</h3>
+        <div class="position-relative sec" id="todos">
             <!-- Botão Esquerda -->
             <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
                 onclick="scrollCarousel(-1, 'carousel-todos')" style="opacity: 0.7;">
@@ -48,7 +48,40 @@ require 'componentes.php';
                 &#8250;
             </button>
         </div>
-<?php include 'footer.php' ?>
+        <?php
+        foreach ($generos as $genero) {
+            $filmesPorGenero = FilmeDAO::consultarPorCategoria($genero['id_categoria']);
+            if (count($filmesPorGenero) === 0) {
+                continue; // Pula gêneros sem filmes
+            }
+        ?>
+        <h3><?= htmlspecialchars($genero['nome_categoria']) ?></h3>
+        <div class="position-relative sec" id="<?= htmlspecialchars($genero['nome_categoria']) ?>">
+            <!-- Botão Esquerda -->
+            <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
+                onclick="scrollCarousel(-1, 'carousel-<?= htmlspecialchars($genero['nome_categoria']) ?>')" style="opacity: 0.7;">
+                &#8249;
+            </button>
+
+            <div id="carousel-<?= htmlspecialchars($genero['nome_categoria']) ?>" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
+                <?php
+                foreach ($filmesPorGenero as $filme) {
+                        card($filme, "filme");
+                        modal($filme, "filme");
+                    }
+                ?>
+            </div>
+            <!-- Botão Direita -->
+            <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3"
+                onclick="scrollCarousel(1, 'carousel-<?= htmlspecialchars($genero['nome_categoria']) ?>')" style="opacity: 0.7;">
+                &#8250;
+            </button>
+        </div>
+        <?php
+        }
+    ?>
+    </div>
+    <?php include 'footer.php' ?>
 </body>
 
 </html>

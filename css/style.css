@@ -50,6 +50,7 @@ header nav, .offcanvas, footer {
 footer {
     color: var(--color6);
     width: 100%;
+    position: bottom;
 }
 
 body {
@@ -65,7 +66,7 @@ h3 {
     padding-top: 20px;
     font-family: 'Lato';
 }
-.carousel img {
+.carousel .img-destaque {
     height: 500px;
     object-position: center;
     object-fit: cover;
@@ -77,8 +78,9 @@ h3 {
   scroll-behavior: smooth;
 }
 
-.modal-body img {
-    height: 450px;
+.modal-img {
+    width: 250px;
+    object-fit: cover;
 }
 
 .btn {
@@ -103,4 +105,7 @@ h3 {
 
 label {
     color : var(--color6);
+}
+.sec {
+    height: 450px;
 }

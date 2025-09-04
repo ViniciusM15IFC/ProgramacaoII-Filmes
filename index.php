@@ -14,13 +14,33 @@
     <title>Caribéflix</title>
 </head>
 <?php
-include 'matriz.php';
 include 'componentes.php';
+require "src/FilmesDAO.php";
+require "src/SeriesDAO.php";
+require "src/CategoriaDAO.php";
+require "src/CatalogoDAO.php";
 
+$destaquesIndex = [
+    [
+        "titulo" => "Ainda Estou Aqui",
+        "tipo" => "filme",
+        "imagem" => "img\ainda-estou-aqui_horizontal.jpg"
+    ],
+    [
+        "titulo" => "Loki",
+        "tipo" => "serie",
+        "imagem" => "img\loki_horizontal.jpg"
+    ],
+    [
+        "titulo" => "My Little Pony: O Filme",
+        "tipo" => "filme",
+        "imagem" => "img\my-little-pony-o-filme_horizontal.jpg"
+    ],
+];
 
 ?>
 
-<body >
+<body>
     <?php include 'header.php' ?>
     <main class="container mt-5 w-75 m-auto">
         <div class="row m-auto container">
@@ -28,19 +48,16 @@ include 'componentes.php';
                 <div class="carousel-inner">
                     <?php
                     $primeiro = true;
-                    for ($i = 0; $i < count($filmes); $i++) {
-                        for ($i = 0; $i < count($filmes); $i++) {
-                            if (in_array($filmes[$i]["id"], $destaques)) {
-                                ?>
-                                <div class="carousel-item <?= $primeiro ? 'active' : '' ?>" data-bs-toggle="modal"
-                                    data-bs-target="#modal<?= $filmes[$i]["id"] ?>">
-                                    <img src="img/<?= $filmes[$i]["id"] ?>_horizontal.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <?php
-                                modal("filmes", $i);
-                            }
-                        }
-
+                    foreach ($destaquesIndex as $destaqueIndex) {
+                        $destaque = CatalogoDAO::consultarUnicoPorTitulo($destaqueIndex["tipo"], $destaqueIndex["titulo"]);
+                        $id = $destaqueIndex["tipo"] === "filme" ? $destaque["id_filme"] : $destaque["id_serie"];
+                        ?>
+                        <div class="carousel-item <?= $primeiro ? 'active' : '' ?>" data-bs-toggle="modal"
+                            data-bs-target="#modal<?= $id ?>">
+                            <img src="<?= $destaqueIndex["imagem"] ?>" class="d-block w-100 img-destaque" alt="...">
+                        </div>
+                        <?php
+                        modal($destaque, $destaqueIndex["tipo"]);
                         $primeiro = false;
                     }
                     ?>
@@ -61,31 +78,6 @@ include 'componentes.php';
 
 
         </div>
-        <h3>Filmes Premiados</h3>
-        <div class="position-relative">
-            <!-- Botão Esquerda -->
-            <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
-                onclick="scrollCarousel(-1, 'carousel-oscar')" style="opacity: 0.7;">
-                &#8249;
-            </button>
-
-            <!-- Área do carrossel -->
-            <div id="carousel-oscar" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
-                <?php
-                for ($i = 0; $i < count($filmes); $i++) {
-                    if (in_array($filmes[$i]["id"], $ganhadoresOscar)) {
-                        card($filmes, $i);
-                        modal("filmes", $i);
-                    }
-                }
-                ?>
-            </div>
-            <!-- Botão Direita -->
-            <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3"
-                onclick="scrollCarousel(1, 'carousel-oscar')" style="opacity: 0.7;">
-                &#8250;
-            </button>
-        </div>
         <h3>Lançamentos</h3>
         <div class="position-relative">
             <!-- Botão Esquerda -->
@@ -94,13 +86,37 @@ include 'componentes.php';
                 &#8249;
             </button>
 
-            <div id="carousel-lancamentos" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
+            <div id="carousel-lancamentos" class="d-flex overflow-hidden gap-3 px-2 sec"
+                style="scroll-behavior: smooth;">
                 <?php
-                for ($i = 0; $i < count($filmes); $i++) {
-                    if ($filmes[$i]["ano"] == 2025) {
-                        card($filmes, $i);
-                        modal("filmes", $i);
-                    }
+                $filmes = FilmeDAO::consultarPorAno('>', 2021);
+                foreach ($filmes as $filme) {
+                    card($filme, "filme");
+                    modal($filme, "filme");
+                }
+                ?>
+            </div>
+            <!-- Botão Direita -->
+            <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3"
+                onclick="scrollCarousel(1, 'carousel-lancamentos')" style="opacity: 0.7;">
+                &#8250;
+            </button>
+        </div>
+        <h3>Para toda a Família</h3>
+        <div class="position-relative">
+            <!-- Botão Esquerda -->
+            <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
+                onclick="scrollCarousel(-1, 'carousel-lancamentos')" style="opacity: 0.7;">
+                &#8249;
+            </button>
+
+            <div id="carousel-lancamentos" class="d-flex overflow-hidden gap-3 px-2 sec"
+                style="scroll-behavior: smooth;">
+                <?php
+                $array = CatalogoDAO::consultarPorCondicao('id_classificacao', 1);
+                foreach ($array as $item) {
+                    card($item, $item['tipo']);
+                    modal($item, $item['tipo']);
                 }
                 ?>
             </div>

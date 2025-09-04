@@ -14,45 +14,16 @@
     <title>Caribéflix Séries</title>
 </head>
 <?php
-include 'matriz.php';
 include 'componentes.php';
 
 ?>
 
 <body class="container mt-5 w-75 m-auto">
     <?php include 'header.php';
-    for ($j = 0; $j < count($generos); $j++) {
-        ?>
-        <h3><?= $generos[$j] ?></h3>
-        <div class="position-relative" id="<?= $generos[$j] ?>">
-            <!-- Botão Esquerda -->
-            <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
-                onclick="scrollCarousel(-1, 'carousel-<?= $generos[$j] ?>')" style="opacity: 0.7;">
-                &#8249;
-            </button>
-
-            <div id="carousel-<?= $generos[$j] ?>" class="d-flex overflow-hidden gap-3 px-2"
-                style="scroll-behavior: smooth;">
-                <?php
-                for ($i = 0; $i < count($series); $i++) {
-                    if ($series[$i]["genero"] == $generos[$j] || $series[$i]["genero2"] == $generos[$j]) {
-                        card($series, $i);
-                        modal("series", $i);
-                    }
-                }
-                ?>
-            </div>
-            <!-- Botão Direita -->
-            <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3"
-                onclick="scrollCarousel(1, 'carousel-<?= $generos[$j] ?>')" style="opacity: 0.7;">
-                &#8250;
-            </button>
-        </div>
-
-
-        <?php
-    }
-    ?>
+    require_once "src/SeriesDAO.php";
+    require_once "src/CategoriaDAO.php";
+    $series =  SerieDAO::consultar();
+    $generos = CategoriaDAO::consultar(); ?>
     <h3>Todos as Séries</h3>
     <div class="position-relative" id="todos">
         <!-- Botão Esquerda -->
@@ -63,9 +34,9 @@ include 'componentes.php';
 
         <div id="carousel-todos" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
             <?php
-            for ($i = 0; $i < count($series); $i++) {
-                card($series, $i);
-                modal("series", $i);
+            foreach ($series as $serie) {
+                card($serie, "serie");
+                modal($serie, "serie");
             }
             ?>
         </div>
@@ -75,7 +46,39 @@ include 'componentes.php';
             &#8250;
         </button>
     </div>
- <?php include 'footer.php' ?>
+    <?php
+        foreach ($generos as $genero) {
+            $seriesPorGenero = SerieDAO::consultarPorCategoria($genero['id_categoria']);
+            if (count($seriesPorGenero) === 0) {
+                continue; // Pula gêneros sem séries
+            }
+        ?>
+        <h3><?= htmlspecialchars($genero['nome_categoria']) ?></h3>
+        <div class="position-relative" id="<?= htmlspecialchars($genero['nome_categoria']) ?>">
+            <!-- Botão Esquerda -->
+            <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3"
+                onclick="scrollCarousel(-1, 'carousel-<?= htmlspecialchars($genero['nome_categoria']) ?>')" style="opacity: 0.7;">
+                &#8249;
+            </button>
+
+            <div id="carousel-<?= htmlspecialchars($genero['nome_categoria']) ?>" class="d-flex overflow-hidden gap-3 px-2" style="scroll-behavior: smooth;">
+                <?php
+                foreach ($seriesPorGenero as $serie) {
+                        card($serie, "serie");
+                        modal($serie, "serie");
+                    }
+                ?>
+            </div>
+            <!-- Botão Direita -->
+            <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3"
+                onclick="scrollCarousel(1, 'carousel-<?= htmlspecialchars($genero['nome_categoria']) ?>')" style="opacity: 0.7;">
+                &#8250;
+            </button>
+        </div>
+        <?php
+        }
+    ?>
+    <?php include 'footer.php' ?>
 </body>
 
 </html>

@@ -42,9 +42,38 @@ class SerieDAO
     public static function consultar(): array
     {
         $conexao = ConexaoBD::conectar();
-        $sql = "SELECT * FROM serie ORDER BY titulo ASC";
+        $sql = "SELECT s.*, c.nome_categoria, cl.nome_classificacao
+        FROM serie s, categoria c, classificacao cl
+        WHERE s.id_categoria = c.id_categoria
+        AND s.id_classificacao = cl.id_classificacao;";
         $stmt = $conexao->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
     }
+    public static function consultarPorCategoria($id_categoria = null): array
+    {
+        $conexao = ConexaoBD::conectar();
+
+        $sql = "SELECT s.*, c.nome_categoria, cl.nome_classificacao
+            FROM serie s
+            INNER JOIN categoria c ON s.id_categoria = c.id_categoria
+            INNER JOIN classificacao cl ON s.id_classificacao = cl.id_classificacao";
+
+        // Adiciona filtro por categoria se o parâmetro foi fornecido
+        if ($id_categoria !== null) {
+            $sql .= " WHERE s.id_categoria = :id_categoria";
+        }
+
+        $stmt = $conexao->prepare($sql);
+
+        // Bind do parâmetro se necessário
+        if ($id_categoria !== null) {
+            $stmt->bindParam(':id_categoria', $id_categoria, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+    }
+
 }
+
